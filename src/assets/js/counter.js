@@ -26,4 +26,7 @@ export function updateCounter() {
   requestAnimationFrame(updateCounter);
 }
 
-requestAnimationFrame(updateCounter);
+// Auto-init
+document.addEventListener("DOMContentLoaded", () => {
+  requestAnimationFrame(updateCounter);
+});
