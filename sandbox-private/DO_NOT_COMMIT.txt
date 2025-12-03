@@ -1,0 +1,15 @@
+sandbox-private/
+│
+├── config/
+│   ├── config.local.js
+│   └── secrets.env
+│
+├── scratch/
+│   └── test.js
+│
+├── assets/
+│   ├── audio/
+│   └── images/
+│
+└── notes/
+    └── rebuild-plan.md
