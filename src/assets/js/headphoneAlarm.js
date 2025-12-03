@@ -5,7 +5,7 @@ let audio;
 // Preload soft loop sound
 async function loadSound() {
   if (!audio) {
-    audio = new Audio("assets/headphone_alarm.mp3");
+    audio = new Audio("public/alarm.mp3"); // Corrected path
     audio.loop = true;
   }
   return audio;
