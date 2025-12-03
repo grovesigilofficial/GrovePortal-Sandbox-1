@@ -1,4 +1,4 @@
-// GrovePortal-Sandbox-1 — Local Admin Auth
+// GrovePortal-Sandbox — Local Admin Auth
 
 const USER = "admin";
 const PASS = "password123";
@@ -6,10 +6,10 @@ const PASS = "password123";
 export function login(username, password) {
   if (username === USER && password === PASS) {
     localStorage.setItem('grove_admin_logged_in', 'true');
-    alert("Logged into GrovePortal-Sandbox-1 Admin");
+    alert("Logged into GrovePortal-Sandbox Admin");
     window.location.href = "dashboard.html";
   } else {
-    alert("Invalid credentials — GrovePortal-Sandbox-1");
+    alert("Invalid credentials — GrovePortal-Sandbox");
   }
 }
 
