@@ -1,17 +1,17 @@
 sandbox-private/
 │
-├── DO_NOT_COMMIT.txt
+├── DO_NOT_COMMIT.txt        ← explains this whole directory + rules
 │
-├── config/
-│   ├── config.local.js      ← your real admin username/password
-│   └── secrets.env          ← API keys, tokens, anything sensitive
+├── config/                  ← all private configuration files
+│   ├── config.local.js      ← local-only settings (never committed)
+│   └── secrets.env          ← private API keys, tokens, secrets
 │
-├── scratch/
-│   └── test.js              ← throwaway testing code
+├── scratch/                 ← throwaway experiments & testing code
+│   └── test.js
 │
-├── assets/
-│   ├── audio/               ← private sounds you don’t want public
-│   └── images/              ← private images, reference shots, etc.
+├── assets/                  ← private assets not meant for production
+│   ├── audio/               ← private sound files, temporary audio
+│   └── images/              ← private images, mockups, reference shots
 │
-└── notes/
-    └── rebuild-plan.md      ← your private documentation & plans
+└── notes/                   ← your personal documentation
+    └── rebuild-plan.md      ← private planning + rebuild notes
