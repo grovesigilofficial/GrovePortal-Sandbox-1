@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>GrovePortal-Sandbox-1 — Dashboard</title>
+<link rel="stylesheet" href="style.css">
+<script type="module" src="js/counter.js" defer></script>
+</head>
+<body>
+<main class="container">
+  <h1>GrovePortal-Sandbox-1 Dashboard</h1>
+  <p id="alarm-status">Status: idle</p>
+  <button id="test-alarm-btn">Test Alarm</button>
+</main>
+
+<script type="module">
+if(localStorage.getItem('grove_admin_logged_in') !== 'true'){
+  window.location.href = 'lock.html';
+}
+
+import('./js/headphoneAlarm.js').then(mod=>{
+  const btn = document.getElementById('test-alarm-btn');
+  const status = document.getElementById('alarm-status');
+  btn.addEventListener('click', async()=>{
+    status.textContent = 'Status: playing';
+    await mod.playAlarm();
+    setTimeout(()=>{status.textContent='Status: idle';},5000);
+  });
+});
+</script>
+</body>
+</html>
