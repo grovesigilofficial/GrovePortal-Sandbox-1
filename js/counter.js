@@ -1,13 +1,6 @@
-const napInterval = 4 * 60 * 60 * 1000; // 4 hours
 let startTime = localStorage.getItem('grove_start_time');
 let running = localStorage.getItem('grove_running') === 'true';
-
-function saveStart(time) {
-  localStorage.setItem('grove_start_time', time);
-  localStorage.setItem('grove_running', 'true');
-  startTime = time;
-  running = true;
-}
+const napInterval = 4 * 60 * 60 * 1000; // 4 hours
 
 export function startUberman() {
   if (!running) saveStart(Date.now());
@@ -25,8 +18,15 @@ export function resetUberman() {
   const countdown = document.getElementById('countdown');
 
   if (display) display.textContent = '0';
-  if (liveTimer) liveTimer.textContent = '00:00:00';
+  if (liveTimer) liveTimer.textContent = '00:00:00.000';
   if (countdown) countdown.textContent = 'Next nap in: 04:00:00';
+}
+
+function saveStart(time) {
+  localStorage.setItem('grove_start_time', time);
+  localStorage.setItem('grove_running', 'true');
+  startTime = time;
+  running = true;
 }
 
 function formatTime(ms) {
@@ -48,7 +48,7 @@ function updateCounter() {
   const elapsed = now - startTime;
 
   const day = Math.floor(elapsed / (1000 * 60 * 60 * 24));
-  const time = new Date(elapsed).toISOString().substr(11, 8);
+  const time = new Date(elapsed).toISOString().substr(11, 12);
 
   display.textContent = day;
   liveTimer.textContent = time;
@@ -57,13 +57,13 @@ function updateCounter() {
   const nextNapIn = napInterval - timeSinceLastNap;
   countdownEl.textContent = 'Next nap in: ' + formatTime(nextNapIn);
 
-  if (running) setTimeout(updateCounter, 1000);
+  if (running) requestAnimationFrame(updateCounter);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  if (running) updateCounter();
+  if (running) requestAnimationFrame(updateCounter);
   const startBtn = document.getElementById('start-btn');
   const resetBtn = document.getElementById('reset-btn');
-  if(startBtn) startBtn.addEventListener('click', startUberman);
-  if(resetBtn) resetBtn.addEventListener('click', resetUberman);
+  if (startBtn) startBtn.addEventListener('click', startUberman);
+  if (resetBtn) resetBtn.addEventListener('click', resetUberman);
 });
