@@ -9,11 +9,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value.trim();
 
-    const user = document.getElementById("username").value.trim();
-    const pass = document.getElementById("password").value.trim();
-
-    if (user === ADMIN.username && pass === ADMIN.password) {
+    if(username === ADMIN.username && password === ADMIN.password){
       localStorage.setItem("grove_admin_logged_in", "true");
       window.location.href = "admin.html";
     } else {
