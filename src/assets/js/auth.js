@@ -5,7 +5,7 @@ export function login(username, password) {
   if (username === CONFIG.adminUsername && password === CONFIG.adminPassword) {
     localStorage.setItem('grove_admin_logged_in', 'true');
     alert("Logged into GrovePortal-Sandbox-1 Admin");
-    window.location.href = "admin.html"; // or dashboard.html if you want
+    window.location.href = "admin.html"; // redirects to admin panel
   } else {
     alert("Invalid credentials — GrovePortal-Sandbox-1");
   }
