@@ -2,7 +2,7 @@ let audio;
 
 async function loadSound() {
   if (!audio) {
-    audio = new Audio("/alarm.mp3");
+    audio = new Audio("/alarm.mp3"); // placeholder file
     audio.loop = true;
   }
   return audio;
