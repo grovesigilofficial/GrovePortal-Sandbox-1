@@ -12,17 +12,33 @@
 <button id="test-alarm-btn">Test Alarm</button>
 <p id="alarm-status">Status: idle</p>
 
-<script type="module">
+<script>
+// Check login
 if(localStorage.getItem('grove_admin_logged_in') !== 'true'){
   window.location.href = 'lock.html';
 }
 
-import('./js/headphoneAlarm.js').then(mod=>{
+// Alarm
+let audio;
+async function loadSound() {
+  if (!audio) {
+    audio = new Audio("/alarm.mp3");
+    audio.loop = true;
+  }
+  return audio;
+}
+
+async function playAlarm() {
+  const sound = await loadSound();
+  try { await sound.play(); } catch(e) { console.log("Playback blocked"); }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
   const btn = document.getElementById('test-alarm-btn');
   const status = document.getElementById('alarm-status');
   btn.addEventListener('click', async()=>{
     status.textContent = 'Status: playing';
-    await mod.playAlarm();
+    await playAlarm();
     setTimeout(()=>{status.textContent='Status: idle';},5000);
   });
 });
