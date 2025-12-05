@@ -14,12 +14,6 @@
   <h3>Current Time: <span id="live-timer">00:00:00.000</span></h3>
   <h3 id="countdown">Next nap in: 04:00:00</h3>
 
-  <!-- Start / Reset Buttons -->
-  <div style="margin-top:24px;">
-    <button id="start-btn">Start Uberman</button>
-    <button id="reset-btn">Reset Uberman</button>
-  </div>
-
   <nav class="nav" style="margin-top:24px;">
     <a href="lock.html">Admin Login</a>
     <a href="dashboard.html">Dashboard</a>
@@ -30,13 +24,5 @@
     NOTE: GrovePortal-Sandbox-1 uses localStorage for now.
   </p>
 </main>
-
-<!-- Uberman Buttons Script -->
-<script type="module">
-import { startUberman, resetUberman } from './src/assets/js/counter.js';
-
-document.getElementById('start-btn').addEventListener('click', startUberman);
-document.getElementById('reset-btn').addEventListener('click', resetUberman);
-</script>
 </body>
 </html>
