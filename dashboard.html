@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <title>Dashboard — GrovePortal-Sandbox-1</title>
 <link rel="stylesheet" href="style.css">
+<script type="module" src="js/headphoneAlarm.js" defer></script>
 </head>
 <body>
 <main class="container">
@@ -12,33 +13,19 @@
 <button id="test-alarm-btn">Test Alarm</button>
 <p id="alarm-status">Status: idle</p>
 
-<script>
-// Check login
+<p style="margin-top:24px;"><a href="index.html">Back Home</a></p>
+
+<script type="module">
 if(localStorage.getItem('grove_admin_logged_in') !== 'true'){
   window.location.href = 'lock.html';
 }
 
-// Alarm
-let audio;
-async function loadSound() {
-  if (!audio) {
-    audio = new Audio("/alarm.mp3");
-    audio.loop = true;
-  }
-  return audio;
-}
-
-async function playAlarm() {
-  const sound = await loadSound();
-  try { await sound.play(); } catch(e) { console.log("Playback blocked"); }
-}
-
-document.addEventListener('DOMContentLoaded', () => {
+import('./js/headphoneAlarm.js').then(mod=>{
   const btn = document.getElementById('test-alarm-btn');
   const status = document.getElementById('alarm-status');
   btn.addEventListener('click', async()=>{
     status.textContent = 'Status: playing';
-    await playAlarm();
+    await mod.playAlarm();
     setTimeout(()=>{status.textContent='Status: idle';},5000);
   });
 });
