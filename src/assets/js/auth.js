@@ -1,11 +1,14 @@
 // src/assets/js/auth.js
-import { CONFIG } from './config.local.js'; // make sure path is correct
+const CONFIG = {
+  adminUsername: "Bleedvow",
+  adminPassword: "S0m3$tr0ngP@ssw0rd"
+};
 
 export function login(username, password) {
   if (username === CONFIG.adminUsername && password === CONFIG.adminPassword) {
     localStorage.setItem('grove_admin_logged_in', 'true');
     alert("Logged into GrovePortal-Sandbox-1 Admin");
-    window.location.href = "admin.html"; // redirects to admin panel
+    window.location.href = "admin.html";
   } else {
     alert("Invalid credentials — GrovePortal-Sandbox-1");
   }
