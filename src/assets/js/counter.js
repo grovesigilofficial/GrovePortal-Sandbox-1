@@ -1,4 +1,4 @@
-// GrovePortal-Sandbox-1 — Uberman Counter Module (Persistent + Countdown)
+// GrovePortal-Sandbox-1 — Uberman Counter Module (Persistent LocalStorage + Countdown)
 
 let startTime = localStorage.getItem('grove_start_time');
 let running = localStorage.getItem('grove_running') === 'true';
@@ -40,7 +40,7 @@ function formatTime(ms) {
 }
 
 export function updateCounter() {
-  if (!running || !startTime) return;
+  if (!startTime) return;
 
   const display = document.getElementById('counter-display');
   const liveTimer = document.getElementById('live-timer');
@@ -63,9 +63,10 @@ export function updateCounter() {
   const nextNapIn = napInterval - timeSinceLastNap;
   countdownEl.textContent = 'Next nap in: ' + formatTime(nextNapIn);
 
-  requestAnimationFrame(updateCounter);
+  if (running) requestAnimationFrame(updateCounter);
 }
 
+// Auto-init on page load
 document.addEventListener('DOMContentLoaded', () => {
   if (running) requestAnimationFrame(updateCounter);
 });
